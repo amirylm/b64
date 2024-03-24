@@ -1,6 +1,6 @@
 #[path = "./encoding.rs"]
 mod encoding;
-use std::fs;
+use std::{fs, io};
 use clap::{Arg, Command};
 
 fn main() {
@@ -43,8 +43,8 @@ fn main() {
                 file_contents.as_str()
             };
             match cmd {
-                "encode" => encoding::encode(data),
-                "decode" => encoding::decode(data),
+                "encode" => encoding::encode(data, &mut io::stdout()),
+                "decode" => encoding::decode(data, &mut io::stdout()),
                 _ => println!("Unknown command")
             }
         });
