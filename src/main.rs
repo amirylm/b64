@@ -2,8 +2,10 @@
 mod encoding;
 use std::{fs, io};
 use clap::{Arg, Command};
+use encoding::{encode, decode};
 
 fn main() {
+
     let matches = Command::new("b64")
         .version("0.0.1")
         // .author("Amir Y <amirylm.dev@gmail.com>")
@@ -43,8 +45,8 @@ fn main() {
                 file_contents.as_str()
             };
             match cmd {
-                "encode" => encoding::encode(data, &mut io::stdout()),
-                "decode" => encoding::decode(data, &mut io::stdout()),
+                "encode" => encode(data, &mut io::stdout()),
+                "decode" => decode(data, &mut io::stdout()),
                 _ => println!("Unknown command")
             }
         });
